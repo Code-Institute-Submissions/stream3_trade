@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <p>You are logged in as {{ user.email }} </p>
+    <p>{{ user.first_name }} {{ user.last_name }}<br></p>
+    <p>{{ Profiledetails.country }}</p><br>
+    <p>{{ Profiledetails.town }}</p><br>
+    <p>{{ Profiledetails.address }}</p><br>
+
+{% endblock %}
