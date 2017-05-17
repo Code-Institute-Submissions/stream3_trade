@@ -70,7 +70,7 @@
 }
 /*----------------INDEX-------------------*/
 #page-top{
-    background-color: #caebf2;
+    background-color: black;
 }
 .kylediv{
     background-color: #caebf2;
@@ -148,7 +148,7 @@
 
 #about, #threads, #products, #confirm, #myitems, #login{
     background-color: #CAEBF2;
-    height:100%;
+    overflow: auto;
 }
 #story{
     background-color: #CAEBF2;
