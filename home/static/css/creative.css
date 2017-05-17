@@ -139,6 +139,7 @@ aside {
   }
 }
 header {
+  height: 100vh;
   position: relative;
   width: 100%;
   min-height: auto;
