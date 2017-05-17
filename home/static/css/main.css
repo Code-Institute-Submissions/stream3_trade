@@ -147,6 +147,7 @@
 }
 
 #about, #threads, #products, #confirm, #myitems, #login{
+    min-height: calc(100vh - 120px);
     background-color: #CAEBF2;
     height:100%;
 }
