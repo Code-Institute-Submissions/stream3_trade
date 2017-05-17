@@ -13,7 +13,6 @@ class Profiledetails(models.Model):
     country = models.CharField(max_length=200, blank=False, null=True)
     town = models.CharField(max_length=200, blank=False, null=True)
     address = models.CharField(max_length=200, blank=False, null=True)
-    profilepic = models.ImageField(upload_to="images",blank=True)
 
     def __str__(self):
         return self.name

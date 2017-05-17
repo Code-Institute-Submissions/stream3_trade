@@ -1,0 +1,1 @@
+web: gunicorn stream3_project.wsgi:application
