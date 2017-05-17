@@ -53,7 +53,7 @@ def login(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
-            user = auth.authenticate(username=request.POST.get('Username'),
+            user = auth.authenticate(username=request.POST.get('username_or_email'),
                                      password=request.POST.get('password'))
 
             if user is not None:
@@ -67,6 +67,7 @@ def login(request):
                     return redirect(reverse('profile'))
             else:
                 form.add_error(None, "Your username or password was not recognised")
+
     else:
         form = UserLoginForm()
 
