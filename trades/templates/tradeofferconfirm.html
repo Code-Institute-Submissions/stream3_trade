@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center boxshadow offercontent">
+                    {% if messages %}
+                        <div class="alert alert-success">
+                            <div class="messages">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                                        <h3 class="warningmess ">Are you sure?<br>
+                                            After you accept the items will be swapped and your {{ trade.wanted.name }} will have a new owner!</h3>
+                    {% for trade in trades %}
+                        <div class="offer col-md-12 col-lg-12 col-sm-12">
+                                <div class="sender col-sm-6 col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 text-center offertitle linktitle"><a href='{% url 'profile_detail' trade.sender.id %}'>From: {{ trade.sender.username }}</a></div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6 ">
+                                        <img class="img-thumbnail img-responsive boxshadow"  src="{{ MEDIA_URL }}{{ trade.offered.image }}">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <h2 class="prodname">{{ trade.offered.name }}</h2>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <p class="text-justify proddesc custommarg">{{ trade.offered.description }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="wanted col-sm-6 col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 text-center offertitle linktitle"><a href='{% url 'profile_detail' trade.receiver.id %}'>To: {{ trade.receiver.username }}</a></div>
+                                    <div class="col-md-6 col-sm-6 col-lg-6">
+                                        <img class="img-thumbnail img-responsive boxshadow"  src="{{ MEDIA_URL }}{{ trade.wanted.image }}">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <h1 class="prodname">{{ trade.wanted.name }}</h1>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-lg-12 custommarg">
+                                        <p class="text-justify proddesc">{{ trade.wanted.description }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="offered" value="{{ trade.offered.id }}">
+                                        <button type="submit" class="submitbutton custombutton custombutton2">Accept Offer</button>
+                                    </form>
+                                </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

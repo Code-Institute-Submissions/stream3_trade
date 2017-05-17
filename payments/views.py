@@ -23,14 +23,17 @@ def buy_now(request, id):
                     description=product.name,
                     card=form.cleaned_data['stripe_id'],
                 )
+
+                if customer.paid:
+                    messages.success(request, "You have successfully paid")
+                    return redirect(reverse('products'))
+                else:
+                    messages.error(request, "Unable to take payment")
+
             except stripe.error.CardError, e:
                 messages.error(request, "Your card was declined!")
 
-            if customer.paid:
-                messages.success(request, "You have successfully paid")
-                return redirect(reverse('products'))
-            else:
-                messages.error(request, "Unable to take payment")
+
         else:
             messages.error(request, "We were unable to take a payment with that card!")
 
@@ -38,7 +41,7 @@ def buy_now(request, id):
         form = MakePaymentForm()
         product = get_object_or_404(Product, pk=id)
 
-    args = {'form': form, 'publishable': settings.STRIPE_PUBLISHABLE, 'product': product}
-    args.update(csrf(request))
+        args = {'form': form, 'publishable': settings.STRIPE_PUBLISHABLE, 'product': product}
+        args.update(csrf(request))
 
     return render(request, 'pay.html', args)

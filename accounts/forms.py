@@ -45,10 +45,6 @@ class UserRegistrationForm(UserCreationForm):
 class ProfileRegistrationForm(forms.ModelForm):
     class Meta:
         model = Profiledetails
-        fields = ('country', 'town', 'address')
-    def save(self, commit=True):
-        instance = super(ProfileRegistrationForm, self).save(commit=False)
+        fields = ('first_name','last_name','email','mobile','country', 'town', 'address')
 
-        if commit:
-            instance.save()
-        return instance
+

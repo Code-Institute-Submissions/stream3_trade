@@ -6,7 +6,14 @@ from django.db import models
 # Create your models here.
 class Profiledetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    country = models.CharField(max_length=200)
-    town = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
+    first_name = models.CharField(max_length=255, blank=False, null=True)
+    last_name = models.CharField(max_length=255, blank=False, null=True)
+    email = models.EmailField(max_length=200, blank=False, null=True)
+    mobile = models.CharField(max_length=30, blank=False, null=True)
+    country = models.CharField(max_length=200, blank=False, null=True)
+    town = models.CharField(max_length=200, blank=False, null=True)
+    address = models.CharField(max_length=200, blank=False, null=True)
+    profilepic = models.ImageField(upload_to="images",blank=True)
 
+    def __str__(self):
+        return self.name

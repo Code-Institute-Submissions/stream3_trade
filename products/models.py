@@ -1,12 +1,15 @@
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import User
+
+
 from django.db import models
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=254, default='')
+    owner = models.ForeignKey(User, blank=True, null=True)
+    name = models.CharField(max_length=254)
     description = models.TextField()
-    #price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='images', blank=True)
 
 

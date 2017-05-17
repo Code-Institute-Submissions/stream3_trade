@@ -1,17 +1,17 @@
-{% load staticfiles %}
+{% load static from staticfiles %}
+{% load gravatar %}
 {% load emoticons_tags %}
-<section class="row comment col-md-9">
- <div class="col-md-3 comment-profile">
-   <p>{{ post.user.username }}</p>
-   <p>{{ post.user.posts.count }} POSTS</p>
- </div>
- <div class="col-md-9 ">
-   <div class="comment-content">
-     {% autoescape off %}
-       {{ post.comment|emoticons }}
-     {% endautoescape %}
-   </div>
-   {% include "comment_details.html" %}
- </div>
-
-</section>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 postcomment ">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 comment-profile commentdetails">
+        <p class="customfont">{{ post.user.username }}</p>
+        <p class="customfont">{{ post.user.posts.count }} Posts</p>
+    </div>
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 commentdetails">
+        <div class="comment-content comment commentwrap col-xs-6 col-sm-6 col-md-6 col-lg-6 customfont">
+         {% autoescape off %}
+           {{ post.comment|emoticons }}
+         {% endautoescape %}
+        </div>
+        {% include "comment_details.html" %}
+    </div>
+</div>

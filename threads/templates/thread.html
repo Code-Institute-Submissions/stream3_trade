@@ -1,44 +1,45 @@
 {% extends "base.html" %}
 {% load thread_extras %}
-{% load staticfiles %}
+{% load static from staticfiles %}
 {% block content %}
- 
- <div class="row header">
- 
-   <div class="container">
-     <h2>{{ thread.name }}</h2>
-     <div class="col-md-12">
-         <table class="table">
-             <tbody>
-             <tr>
-                 <th>
-                   CREATED
-                 </th>
-                 <th>OWNER</th>
-                 <th>LAST POST</th>
-             </tr>
-             <tr>
-                 <td>
-                   <time datetime="{{ thread.created_at }}">
-                    {{ thread.created_at|started_time }}
-                   </time>
-                 </td>
-                 <td>{{ thread.user.username }}</td>
-                 <td>{% last_posted_user_name thread %}</td>
-             </tr>
-           </tbody>
-         </table>
-     </div>
-     {% if user.is_authenticated %}
-       <p>
-         <a href="{% url 'new_post' thread.id %}" class="btn btn-primary">New post</a>
-       </p>
-     {% endif %}
-   </div>
- </div>
- <div class="container">
-   {% for post in thread.posts.all %}
-     {% include "post.html" %}
-   {% endfor %}
- </div>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                {% if messages %}
+                    <div class="alert alert-success">
+                        <div class="messages">
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center threadcontain">
+                        <div class="row threadname">
+                            <h2 class="customfont">{{ thread.name }}</h2>
+                        </div>
+                        <div class="row threadrow">
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 threadheaders">
+                                    <p class="customfont">Created</p>
+                                    <time class="customfont" datetime="{{ thread.created_at }}">{{ thread.created_at|started_time }}</time>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 threadheaders">
+                                    <p class="customfont">Owner</p>
+                                    <p class="customfont">{{ thread.user.username }}</p>
+                                </div >
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 threadheaders customfont"><p>Last Post</p></div>
+                        </div>
+                            {% for post in thread.posts.all %}
+                                {% include "post.html" %}
+                            {% endfor %}
+                        <div >
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'new_post' thread.id %}" class="btn btn-primary custombutton newpostbutton boxshadow customfont">New post</a>
+                            {% endif %}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

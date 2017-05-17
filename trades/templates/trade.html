@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    {% if messages %}
+                        <div class="alert alert-success">
+                            <div class="messages">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    <h1 class="tradeheader customfont">Trade for</h1>
+                    <p class="tradedesc customfont">Please select one of your items for a trade request! The trade will be made if the owner accept your offer, so choose wisely!</p>
+                                <div class="row thumbnails">
+                                    {% for product in products %}
+                                    <div class="col-sm-6 col-md-4 col-lg-3">
+                                        <div class="thumbnail boxshadow">
+                                            <h4 class="prodname customfont">{{ product.name }}</h4>
+                                            <img  src="{{ MEDIA_URL }}{{ product.image }}" alt="...">
+                                                <div class="caption">
+                                                    <form method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="offered" value="{{ product.id }}">
+                                                        <button type="submit" class="custombutton custombutton2 submitbutton customfont">Send Offer</button>
+                                                    </form>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+

@@ -1,19 +1,22 @@
 from django.contrib import messages, auth
 from accounts.forms import UserRegistrationForm, UserLoginForm, ProfileRegistrationForm
 from django.core.urlresolvers import reverse
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect,get_object_or_404
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from .models import Profiledetails
+from products.models import Product
+from trades.models import Trades
 
 
 @login_required(login_url='/login')
 def profile(request):
     try:
-        Profiledetails.objects.get(user=request.user)
-        return render(request, 'profile.html')
+        details = Profiledetails.objects.filter(user=request.user)
+        return render(request, "profile.html", {"details": details})
     except Profiledetails.DoesNotExist:
         return redirect(create_profile)
+
 
 
 @login_required(login_url='/login')
@@ -90,7 +93,7 @@ def register(request):
             if user:
                 auth.login(request, user)
                 messages.success(request, "You have successfully registered")
-                return redirect(reverse('profile'))
+                return redirect(reverse(create_profile))
 
             else:
                 messages.error(request, "unable to log you in at this time!")
@@ -102,3 +105,31 @@ def register(request):
     args.update(csrf(request))
 
     return render(request, 'register.html', args)
+
+@login_required(login_url='/login')
+def get_details(request):
+    details = Profiledetails.objects.filter(user=request.user)
+    return render(request, "profile.html", {"details": details})
+
+@login_required(login_url='/login')
+def postMyProduct(request):
+    products = Product.objects.filter(owner=request.user)
+    args = {}
+    args.update(csrf(request))
+    return render(request, "profileitems.html", {"products": products}, args)
+
+def postMyProductDetail(request, id):
+    myprod = get_object_or_404(Product, pk=id)
+    myprod.save()
+    return render(request, "profileitem_details.html", {'myprod': myprod})
+
+@login_required(login_url='/login')
+def alltradeoffers(request):
+    trades=Trades.objects.filter(receiver=request.user)
+    return render(request, 'tradeoffers.html',{"trades":trades})
+
+@login_required(login_url='/login')
+def refusetrade(request, id):
+    deletrade = get_object_or_404(Trades, pk=id)
+    deletrade.delete()
+    return redirect(get_details)

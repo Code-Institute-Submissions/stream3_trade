@@ -1,21 +1,37 @@
 {% extends "base.html" %}
+{% load static from staticfiles %}
 {% load bootstrap_tags %}
 {% block content %}
+        {% if next %}
+            <form role="form" method="post" action="{% url 'login' %}?next={{ next }}"></form>
+        {% else %}
+            <form role="form" method="post" action="{% url 'login' %}"></form>
+        {% endif %}
 
-    {% if next %}
-        <form role="form" method="post" action="{% url 'login' %}?next={{ next }}">
-    {% else %}
-        <form role="form" method="post" action="{% url 'login' %}">
-    {% endif %}
-
-            <legend>Login</legend>
-            {% csrf_token %}
-            {{ form | as_bootstrap }}
-
-            <p><a href="{% url 'password_reset' %}">Forgot my password</a></p>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Login</button>
+    <section class="bg-primary" id="login">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center customfont">
+                    {% if messages %}
+                            <div class="alert alert-success">
+                                <div class="messages">
+                                    {% for message in messages %}
+                                    {{ message }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                    {% endif %}
+                    <form role="form" method="post" action="{% url 'login' %}?next={{ next }}">
+                        <legend class="legendlogin customfont">Login</legend>
+                        {% csrf_token %}
+                        {{ form | as_bootstrap }}
+                        <p><a class="customfont" href="{% url 'password_reset' %}">Forgot my password</a></p>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary custombutton customfont">Login</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
+    </section>
 {% endblock %}

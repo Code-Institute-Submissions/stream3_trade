@@ -1,35 +1,39 @@
 {% extends "base.html" %}
+{% load static from staticfiles %}
 {% block content %}
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Buy</th>
-            <th>Cart</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td><img height="100" width="100" src="{{ MEDIA_URL }}{{ product.image }}"></td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
-                <td><a href="{% url 'buy_now_stripe' product.id %}" )>Buy Now</a></td>
-                {#                    <td><a href="{% url 'add_to_cart' product.id %}")>Add To Cart</a></td>#}
-                <td>
-                    <form method="post" action="{% url 'add_to_cart' product.id %}">
-                        {% csrf_token %}
-                        Quantity
-                        <input name='quantity' type="number" min="1" max="999">
-                        <button type="submit">Add</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+
+    <section class="bg-primary " id="products">
+        <div class="container">
+            <div class="row">
+                <div class=" col-lg-12 col-md-12 col-sm-12 text-center">
+                    {% if messages %}
+                            <div class="alert alert-success">
+                                <div class="messages">
+                                    {% for message in messages %}
+                                    {{ message }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                    {% endif %}
+                        <div class="row thumbnails">
+                            {% for product in products %}
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="thumbnail boxshadow">
+                                        <h4 class="prodname customfont">{{ product.name }}</h4>
+                                        <img class="imgmargin" src="{{ MEDIA_URL }}{{ product.image }}" alt="...">
+                                            <div class="caption ">
+                                                <ul class="list-inline text-center">
+                                                    <li><a onclick="location.href='{% url 'product_detail' product.id %}'" class="btn btn-primary tradebutton customfont" role="button">Details</a></li>
+                                                    <li><a href="{% url 'traderequest' product.id %}" class="btn btn-default custombutton tradebutton customfont" role="button"> Trade </a></li>
+                                                </ul>
+                                            </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
+

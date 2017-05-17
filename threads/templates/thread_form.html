@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load bootstrap_tags %}
-{% load staticfiles %}
+{% load static from staticfiles %}
  
 {% block head_js %}
    <script src="{% static 'tinymce/tinymce.min.js' %}"></script>
@@ -11,18 +11,35 @@
  
  
 {% block content %}
-   <section>
-       <div class="col-md-9">
-           <form method="post" action="{% url 'new_thread' subject.id %}">
-               {% csrf_token %}
-               {{ thread_form | as_bootstrap }}
-               <hr>
-               {{ post_form | as_bootstrap }}
- 
-               <div class="form-group">
-                   <button type="submit" class="btn-primary">Post Question</button>
-               </div>
-           </form>
-       </div>
-   </section>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    {% if messages %}
+                            <div class="alert alert-success">
+                                <div class="messages">
+                                    {% for message in messages %}
+                                    {{ message }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                    {% endif %}
+                    <section>
+                        <div class="col-md-9 col-md-offset-2 customfont">
+                            <form method="post" action="{% url 'new_thread' subject.id %}">
+                                {% csrf_token %}
+                                {{ thread_form | as_bootstrap }}
+                                <hr>
+                                {{ post_form | as_bootstrap }}
+                                <div class="form-group">
+                                    <button type="submit" class="btn-primary custombutton custombutton2 submitbutton customfont">Post Question</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

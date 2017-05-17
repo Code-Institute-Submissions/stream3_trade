@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+    <section class="bg-primary" id="myitems">
+        <div class="container">
+            <div class="row">
+                <div class="boxshadow col-lg-12 col-md-12 col-sm-12 maincontent2 col-sm-offset-2 col-md-offset-4 col-lg-offset-4">
+                    {% if messages %}
+                            <div class="alert alert-success">
+                                <div class="messages">
+                                    {% for message in messages %}
+                                        {{ message }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                    {% endif %}
+                    <div class=" col-sm-12 col-md-12 col-lg-12 mainsubnav">
+                            <ul class="nav nav-pills subnav">
+                                <li role="presentation" class="active boxshadow"><a href="{% url 'addMyProduct' %}" class="navbuttons customfont">Add Item</a></li>
+                                <li role="presentation" class="active boxshadow"><a href="{% url 'get_details' %}" class="navbuttons customfont">Profile</a></li>
+                            </ul>
+                    </div>
+                    <div class="titlearea">
+                        <h1 class="profiletitles text-center customfont">My Items</h1>
+                    </div>
+                    <div class="row thumbnails">
+                    {% for product in products %}
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="thumbnail boxshadow">
+                                <h4 class="prodname text-center customfont">{{ product.name }}</h4>
+                                <img class="imgmargin" src="{{ MEDIA_URL }}{{ product.image }}" alt="...">
+                                <div class="caption">
+                                    <ul class="list-inline text-center">
+                                        <li><a href="{% url 'postMyProductDetail' product.id %}" class="customfont btn btn-primary  boxshadow tradebutton" role="button">Details</a></li>
+                                        <li><a href="{% url 'deleterequest' product.id %}" class="customfont btn btn-primary custombutton boxshadow" role="button">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

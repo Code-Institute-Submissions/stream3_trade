@@ -26,6 +26,8 @@ from rest_framework import routers
 from products import views as product_views
 from cart import views as cart_views
 from threads import views as forum_views
+from trades import urls as trades_urls
+from accounts.views import alltradeoffers
 
 from django.views.static import serve
 
@@ -42,11 +44,13 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', admin.site.urls),
     url(r'^products/', include(products_urls)),
-    url(r'^categories/', include(categories_urls)),
+    url(r'^trades/', include(trades_urls)),
+    #url(r'^categories/', include(categories_urls)),
     url(r'^payments/', include(payments_urls)),
     url(r'^cart/', include(cart_urls)),
     url(r'^$', get_index, name='index'),
-    url(r'', include(accounts_urls)),
+    url(r'^accounts/', include(accounts_urls)),
+    url(r'^user/', include(accounts_urls)),
     url(r'^forum/$', forum_views.forum),
     url(r'^threads/(?P<subject_id>\d+)/$', forum_views.threads, name='threads'),
     url(r'^new_thread/(?P<subject_id>\d+)/$',  forum_views.new_thread, name='new_thread'),
@@ -54,5 +58,4 @@ urlpatterns = [
     url(r'^post/new/(?P<thread_id>\d+)/$', forum_views.new_post, name='new_post'),
     url(r'^post/edit/(?P<thread_id>\d+)/(?P<post_id>\d+)/$',forum_views.edit_post, name='edit_post'),
     url(r'^post/delete/(?P<post_id>\d+)/$', forum_views.delete_post, name='delete_post'),
-
 ]

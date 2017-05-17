@@ -1,13 +1,6 @@
-<section class="thread">
-    <header>
-        <table>
-            <tr>
-                <td>
-                    <a href="{% url 'thread' thread.id %}">
-                        <h4>{{ thread.name }}</h4>
-                    </a>
-                </td>
-            </tr>
-        </table>
-    </header>
-</section>
+
+<div>
+    <a  href="{% url 'thread' thread.id %}">
+        <h4 class="threaditems customfont">{{ thread.name }}</h4>
+    </a>
+</div>

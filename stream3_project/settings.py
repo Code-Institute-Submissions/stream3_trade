@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'tinymce',
     'arrow',
     'storages',
+    'trades',
+    'django_gravatar'
 ]
 
 MIDDLEWARE = [
@@ -143,7 +145,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-TINYMCE_JS_ROOT = os.path.join(BASE_DIR, "static", 'js', 'tinymce', 'tinymce.min.js')
+TINYMCE_JS_ROOT = os.path.join(BASE_DIR, "home/static", 'js', 'tinymce', 'tinymce.min.js')
 
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #MEDIA_URL = '/media/'

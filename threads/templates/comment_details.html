@@ -1,23 +1,24 @@
 {% load thread_extras %}
-<div class="details">
-    <div class="col-md-6">
-        <div class="pull-left">
-            <time datetime="{{ post.created_at }}">
-                Posted: {{ post.created_at|started_time }}
-            </time>
-        </div>
-    </div>
-    <div class="col-md-6">
+{% load static from staticfiles %}
+<div class="details col-sm-6 col-md-6 col-lg-6 ">
+     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="pull-right">
             {% if post.user == user or user.is_staff %}
                 <a href="{% url 'edit_post' thread.id post.id %}">
-                    <i class="fa fa-pencil-square-o"></i>
+                    <i class="fa fa-pencil-square-o fa-2x"></i>
                 </a>
                 <a href="{% url 'delete_post' post.id %}">
-                    <i class="fa fa-trash-o"></i>
+                    <i class="fa fa-trash-o fa-2x"></i>
                 </a>
             {% endif %}
         </div>
         <div class="clearfix"></div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+        <div class="">
+            <time class="customfont" datetime="{{ post.created_at }}">
+                <p class="commentsmall customfont">Posted: {{ post.created_at|started_time }}</p>
+            </time>
+        </div>
     </div>
 </div>

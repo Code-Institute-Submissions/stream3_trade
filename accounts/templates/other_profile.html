@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+    <section class="bg-primary aboutexcept" id="about" >
+        <div class="container">
+            <div class="row">
+                {% if messages %}
+                    <div class="alert alert-success">
+                        <div class="messages text-center">
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                    <div class="col-lg-12 col-md-12 col-sm-12 maincontent  col-sm-offset-2 col-md-offset-4 col-lg-offset-4">
+                          <div class=" col-sm-12 col-md-12 col-lg-12 mainsubnav">
+                            <ul class="nav nav-pills  subnav">
+                                <li  role="presentation" class="active "><p><button class="btn btn-default navbuttons navbuttons2 boxshadow customfont" onclick="location.href='{% url 'others_products' getprofile.user_id %}'">Items</button></p></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 avatar text-center">
+                            <h2 class="profiletitles customfont">{{ getprofile.first_name }} {{ getprofile.last_name }}</h2>
+                        </div>
+                        <div>
+                                <p class="pcolor text-center customfont">Email Address: <span class="profiledetails text-center">{{ getprofile.email }}</span> </p>
+                                <p class="pcolor text-center customfont">Mobile:<span class="profiledetails text-center">{{ getprofile.mobile }}</span></p>
+                                <p class="pcolor text-center customfont">Country:<span class="profiledetails text-center">{{ getprofile.country }}</span></p>
+                                <p class="pcolor text-center customfont ">Town:<span class="profiledetails text-center">{{ getprofile.town }}</span></p>
+                                <p class="pcolor text-center customfont">address:<span class="profiledetails text-center">{{ getprofile.address }}</span></p>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

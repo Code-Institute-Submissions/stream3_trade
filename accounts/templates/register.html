@@ -1,12 +1,31 @@
 {% extends "base.html" %}
+{% load static from staticfiles %}
 {% load bootstrap_tags %}
 {% block content %}
-    <form role="form" method="post" action="{% url 'register' %}">
-        <legend>Create a new account</legend>
-        {% csrf_token %}
-        {{ form | as_bootstrap }}
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Create account</button>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center customfont">
+                    {% if messages %}
+                            <div class="alert alert-success">
+                                <div class="messages">
+                                    {% for message in messages %}
+                                    {{ message }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                    {% endif %}
+                        <form role="form" method="post" action="{% url 'register' %}">
+                            <legend class="customfont">Create a new account</legend>
+                            {% csrf_token %}
+                            {{ form | as_bootstrap }}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary custombutton customfont">Create account</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
         </div>
-    </form>
+    </section>
 {% endblock %}

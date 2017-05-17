@@ -1,5 +1,103 @@
 {% extends "base.html" %}
-
+{% load static from staticfiles %}
 {% block content %}
-    <h1>Hello World</h1>
+
+    <header id="afterheader">
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading" class="customfont">Tradable</h1>
+                <hr>
+                <p id="headingtext" class="customfont">If you have anything intresting and tradable, then this is your place. Find out below why Tradable is so powerful</p>
+                <a href="#services" class="btn btn-primary btn-xl page-scroll custombutton customfont">More about Tradable</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="services">
+        <div id="servicesapper" class="container ">
+                <div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h2 class="section-heading serviceheader customfont">How Tradable works?</h2>
+                            <hr class="primary">
+                        </div>
+                    </div>
+                </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box customfont">
+                            <i class="fa fa-4x fa-user-plus text-primary sr-icons"></i>
+                            <h3 class="servicename customfont">Step 1: Register</h3>
+                            <p class="text-muted servicedesc ">Just simply fill yout a Registration form</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box customfont">
+                            <i class="fa fa-4x fa-address-card text-primary sr-icons"></i>
+                            <h3 class="servicename customfont">Step 2: Fill in your details</h3>
+                            <p class="text-muted servicedesc">Fill in your Profile details</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box customfont">
+                            <i class="fa fa-4x fa-upload text-primary sr-icons"></i>
+                            <h3 class="servicename customfont">Step 3: Upload your Tradable items</h3>
+                            <p class="text-muted servicedesc">Just upload a good picture and a description about your Tradeable items.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box customfont">
+                            <i class="fa fa-4x fa-arrows-h text-primary sr-icons"></i>
+                            <h3 class="servicename customfont">Step 4: You are ready to trade</h3>
+                            <p class="text-muted servicedesc">Browse the website for other Tradable items and just send a request</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="no-padding " id="portfolio">
+        <div >
+            <div class="row no-gutter popup-gallery nomarg kylediv">
+                <div id="portfolioappear" class="col-lg-12 col-sm-12 col-md-12 col-xs-12 text-center reveal customfont">
+
+                        <h1 class="customfont storyhead">A Successful trading story</h1>
+
+                        <p class="kylestory text-center">Kyle MacDonald exchanged items online for better things until he reached his ultimate goal - his own house.
+                            It took almost a year and 14 trades. <span>Click on the links below</span> to see all Kyle`s items with the original pictures
+                    </p>
+                    <div class="kylelinks text-center">
+                        <a href="{% static 'img/portfolio/fullsize/paperclip.jpg' %}" class="portfolio-box animatelink portfoliolinks"> 1.: A paperclip </a>
+                        <a href="{% static 'img/portfolio/fullsize/pen.jpg' %}" class="portfolio-box animatelink portfoliolinks">2.:fish-shaped pen.</a>
+                        <a href="{% static 'img/portfolio/fullsize/knob.jpg' %}" class="portfolio-box animatelink portfoliolinks">3.:hand-sculpted doorknob.</a>
+                        <a href="{% static 'img/portfolio/fullsize/stove.jpg' %}" class="portfolio-box animatelink portfoliolinks">4:Coleman camp stove.
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/honda.jpg' %}" class="portfolio-box animatelink portfoliolinks">5.: Honda generator.
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/keg.jpg' %}" class="portfolio-box animatelink portfoliolinks"> 6.: Empty keg, and a filling with any beer, and a neon Budweiser sign.<br>
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/snowmobile.png' %}" class="portfolio-box animatelink portfoliolinks">7.: Ski-Doo snowmobile.
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/trip.jpg' %}" class="portfolio-box animatelink portfoliolinks">8.: Trip for 2 to Yahk, British Columbia.
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/truck.jpg' %}" class="portfolio-box animatelink portfoliolinks">9.: A box truck.
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/recording.jpg' %}" class="portfolio-box animatelink portfoliolinks">10.: A Recording contract with Metalworks.
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/phoenix.jpg' %}" class="portfolio-box animatelink portfoliolinks">11.: A year's rent in Phoenix, Arizona.
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/cooper.jpg' %}" class="portfolio-box animatelink portfoliolinks">12.: One afternoon with Alice Cooper
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/kissglobe.jpg' %}" class="portfolio-box animatelink portfoliolinks">13.: KISS motorized snow globe.
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/movierole.jpg' %}" class="portfolio-box animatelink portfoliolinks">14.: A role in the film Donna on Demand
+                        </a>
+                        <a href="{% static 'img/portfolio/fullsize/house.jpg' %}" class="portfolio-box animatelink portfoliolinks">15.: A two-story farmhouse in Kipling, Saskatchewan.
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

@@ -1,11 +1,52 @@
 {% extends "base.html" %}
-
+{% load static from staticfiles %}
+{% load gravatar %}
 {% block content %}
-
-    <p>You are logged in as {{ user.email }} </p>
-    <p>{{ user.first_name }} {{ user.last_name }}<br></p>
-    <p>{{ Profiledetails.country }}</p><br>
-    <p>{{ Profiledetails.town }}</p><br>
-    <p>{{ Profiledetails.address }}</p><br>
-
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    {% if messages %}
+                            <div class="alert alert-success">
+                                <div class="messages">
+                                    {% for message in messages %}
+                                    {{ message }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                    {% endif %}
+                    {% for detail in details %}
+                       <img src="{% gravatar_url user.email 150 %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                        <h2 class="profiletitles">Hi {{ detail.first_name }}</h2>
+                        <div>
+                            <p class="pcolor">Email Address: {{ user.email }} </p>
+                        </div>
+                        <div>
+                            <p class="pcolor">First Name: {{ detail.first_name }} </p>
+                        </div>
+                        <div>
+                            <p class="pcolor">Last Name: {{ detail.last_name }} </p>
+                        </div>
+                        <div>
+                            <p class="pcolor">Mobile:{{ detail.mobile }} </p>
+                        </div>
+                        <div>
+                            <p class="pcolor">Country: {{ detail.country }} </p>
+                        </div>
+                        <div>
+                            <p class="pcolor">Town {{ detail.town }} </p>
+                        </div>
+                        <div>
+                            <p class="pcolor">Address {{ detail.address }} </p>
+                        </div>
+                    {% endfor %}
+                    <a href="{% url 'addMyProduct' %}" class="navbuttons">Add an Item</a>
+                    <a href="{% url 'postMyProduct' %}" class="navbuttons">My Items</a>
+                    {% for product in products %}
+                        {{ product.name }} {{ product.description }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

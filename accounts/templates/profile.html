@@ -1,10 +1,45 @@
 {% extends "base.html" %}
-
+{% load static from staticfiles %}
+{% load gravatar %}
 {% block content %}
-
-    <img src="{{ MEDIA_URL }}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
-    <h2>Success!</h2>
-    <p>You are logged in as {{ user.email }} </p>
-    <p>{{ user.first_name }} {{ user.last_name }}<br></p>
+    <section class="bg-primary aboutexcept" id="about" >
+        <div class="container">
+            <div class="row">
+                {% if messages %}
+                    <div class="alert alert-success">
+                        <div class="messages text-center">
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                    <div class="col-lg-12 col-md-12 col-sm-12 maincontent  col-sm-offset-2 col-md-offset-4 col-lg-offset-4">
+                        <div class=" col-sm-12 col-md-12 col-lg-12 mainsubnav">
+                            <ul class="nav nav-pills  subnav">
+                                <li role="presentation" class="active boxshadow"><a href="{% url 'addMyProduct' %}" class="navbuttons customfont">Add Item</a></li>
+                                <li role="presentation" class="active boxshadow"><a href="{% url 'postMyProduct' %}" class="navbuttons customfont">My Items</a></li>
+                                <li  role="presentation" class="active boxshadow"><a href="{% url 'alltradeoffers' %}" class="navbuttons customfont">Offers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 avatar text-center">
+                            <img src="{% gravatar_url user.email 150 %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle boxshadow">
+                            <h2 class="prodname customfont">Hi {{ user.username }}</h2>
+                        </div>
+                        <div>
+                            {% for detail in details %}
+                                <p class="pcolor text-center customfont"><span style="font-weight: bold">Email Address: </span>{{ user.email }}</p>
+                                <p class="pcolor text-center customfont"><span style="font-weight: bold">First Name: </span>{{ detail.first_name }}</p>
+                                <p class="pcolor text-center customfont"><span style="font-weight: bold">Last Name: </span>{{ detail.last_name }}</p>
+                                <p class="pcolor text-center customfont"><span style="font-weight: bold">Mobile: </span>{{ detail.mobile }}</p>
+                                <p class="pcolor text-center customfont"><span style="font-weight: bold">Country: </span>{{ detail.country }}</p>
+                                <p class="pcolor text-center customfont"><span style="font-weight: bold">Town: </span>{{ detail.town }}</p>
+                                <p class="pcolor text-center customfont"><span style="font-weight: bold">Address: </span>{{ detail.address }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
