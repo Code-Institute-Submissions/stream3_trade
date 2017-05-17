@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block content %}
+
+    <div class="container container_main">
+        <div class="col-md-5 left_container">
+            <div class="center_cont_left">
+                <h1 class="title"> Support us </h1>
+                <p class="subtitle">{{ user.username }}, we need you </p>
+            </div>
+        </div>
+        <div class="col-md-7 right_containter">
+                <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | as_bootstrap }}
+                    <button type="submit" class="btn btn-info custombutton boxshadow customfont">Save</button>
+                </form>
+        </div>
+    </div>
+
+{% endblock %}

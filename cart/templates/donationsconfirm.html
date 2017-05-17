@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+    <div class="container container_main">
+        <div class="col-md-5 left_container">
+            <div class="center_cont_left">
+                <h1 class="title"> Support us </h1>
+                <p class="subtitle">{{ user.username }}, we need you </p>
+            </div>
+        </div>
+        <div class="col-md-7 right_containter">
+            {% for donation in donations %}
+                <img height="100" width="100" src="{{ MEDIA_URL }}{{ donation.image }}">
+                <p class="text"> <strong>{{ donation.title }}</strong> </p>
+                <p class="text"> {{ donation.description }}  </p>
+                <p class="text"> <strong> {{ donation.price }} eurs </strong> </p>
+                <h2 class="container_center_icons"> <button type="submit" class="btn_text btn_red btn_red_white"><a class=" white" href="{% url 'support_us' donation.id %}"> Support us </a></button></h2>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
