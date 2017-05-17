@@ -327,6 +327,10 @@
 footer{
     background-color: black;
     height: 200px;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
 }
 #contact{
     position: absolute;
