@@ -4,8 +4,7 @@
 {% block content %}
     <section class="bg-primary" id="threads">
         <div class="container">
-            <div>
-                <div class="col-lg-8 col-lg-offset-2 text-center contain">
+                <div class="col-sm-12 col-lg-8 col-lg-offset-2 text-center contain">
                     {% if messages %}
                             <div class="alert alert-success">
                                 <div class="messages">
@@ -15,7 +14,7 @@
                                 </div>
                             </div>
                     {% endif %}
-                    <div class="">
+
                         <div class="threadhead">
                             <div>
                                 <h1 class="text-center threadheadh1 customfont">{{ subject.name }}</h1>
@@ -29,9 +28,8 @@
                           {% if user.is_authenticated %}
                                   <a href="{% url 'new_thread' subject.id %}" class="btn btn-primary custombutton threadbutton boxshadow customfont">New Topic</a>
                           {% endif %}
-                    </div>
+
                 </div>
-            </div>
         </div>
     </section>
 {% endblock %}

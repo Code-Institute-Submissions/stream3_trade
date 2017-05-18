@@ -274,6 +274,7 @@
 }
 .threadhead h1{
     color: white;
+    margin: 0;
 }
 .threadbutton{
     margin:10px;
