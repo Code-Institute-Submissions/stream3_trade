@@ -211,6 +211,7 @@
     background-color: #bccbde;
     border:solid 1px #252839;
     margin:0;
+    padding: 0;
 }
 
 /*-------------------------products--------------*/
@@ -227,9 +228,11 @@
 .prodname{
     font-weight: bold;
     color: #252839;
+    overflow:hidden;
 }
 .proddesc{
     color: #252839;
+    overflow-wrap: break-word;
 }
 /*--------------FORUM----------------------------------*/
 .topicbutton{
@@ -262,6 +265,7 @@
     border-radius: 30px;
     background-color: #bccbde;
     box-shadow: 3px 3px 10px #252839;
+    padding: 0;
 }
 .threadhead{
     background-color: #252839;
@@ -284,6 +288,7 @@
     border: 3px solid #252839;
     background-color: #bccbde;
     color: #252839;
+    padding:0;
 }
 .threadname{
     background-color: #252839;
