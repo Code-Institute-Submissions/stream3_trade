@@ -294,6 +294,10 @@
 .threadname{
     background-color: #252839;
 }
+.threadname h2{
+    margin: 0;
+    padding:10px;
+}
 .threadrow{
     margin-top:15px;
     margin-bottom:15px;
