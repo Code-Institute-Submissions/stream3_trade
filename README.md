@@ -11,7 +11,7 @@ For example a guy named Kyle MacDonald started with a paperclip and after 14 tra
 
 The website uses Bootstrap for full responsiveness so it is available on all devices.
 On the home page user can find instructions how the site works and also they can read the story of Kyle Macdonald.
-If the user clicks on the items in the Kyle Macdonald section it will pop up a gallery. This galleries functionality comes from a Bootstrap template and the pictures are from Kyle`s blog (www.oneredpaperclip.blogspot.ie)
+If the user clicks on the items in the Kyle Macdonald section it will pop up a gallery. This galleries functionality comes from a Bootstrap template and the pictures are from Kyle's blog (www.oneredpaperclip.blogspot.ie)
 
 ## Functionalities
 
@@ -23,10 +23,10 @@ After the user logged in Django Gravatar will load their profile pictures from t
 
 ### Add Product and Trading
 
-User can upload products on their Profile page by fill in a form. Also they are able to delete their products and check other user`s product and the details.
+User can upload products on their Profile page by fill in a form. Also they are able to delete their products and check other user's product and the details.
 To make a trade a user needs to select a product what the user is intrested in, and offer one of his/her own product. Only then a offer request will be send to the other user.
 The trade will only happen if the other user accepts the trade request.
-Every product has a owner_id. This owner_id is the same as the unique user_id. When a trade happens the wanted product and the offered product`s owner_id will be swapped.
+Every product has a owner_id. This owner_id is the same as the unique user_id. When a trade happens the wanted product and the offered product owner_id will be swapped.
 If the request is declined then the trade will be deleted from the database.
 
 ### Forum
