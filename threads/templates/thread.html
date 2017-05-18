@@ -33,7 +33,7 @@
                             {% for post in thread.posts.all %}
                                 {% include "post.html" %}
                             {% endfor %}
-                        <div >
+                        <div class="col-sm-12 col-md-12 col-lg-12">
                             {% if user.is_authenticated %}
                                 <a href="{% url 'new_post' thread.id %}" class="btn btn-primary custombutton newpostbutton boxshadow customfont">New post</a>
                             {% endif %}
